@@ -3,11 +3,14 @@ import { MailIcon } from "@/assets/icons/mailicon";
 import { Avatar } from "@nextui-org/avatar";
 import { Card, CardBody } from "@nextui-org/card";
 import { Input } from "@nextui-org/input";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Home() {
   const [datajson, setData] = useState([]);
+  const router = useRouter();
   useEffect(() => {
+    if (localStorage.getItem("login") != "true") router.push("/login");
     fetch("/chat/chatforpdf.json").then(async (response) => {
       const temp = await response.json();
       setData(() => temp);

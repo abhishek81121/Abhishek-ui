@@ -2,8 +2,12 @@
 import { Button } from "@nextui-org/button";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 export default function Home() {
   const router = useRouter();
+  useEffect(() => {
+    if (localStorage.getItem("login") != "true") router.push("/login");
+  }, []);
   return (
     <div className="h-screen w-screen flex items-center justify-center bg-gradient-to-tr from-[#051367] to-[#1C0A00] ">
       <div className="sm:w-1/2 w-4/5 h-3/4 flex flex-col gap-y-3">

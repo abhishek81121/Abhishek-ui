@@ -2,9 +2,13 @@
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Home() {
   const router = useRouter();
+  useEffect(() => {
+    if (localStorage.getItem("login") != "true") router.push("/login");
+  }, []);
   return (
     <div className="h-screen w-screen bg-gradient-to-tr flex flex-col items-center from-[#051367] to-[#1C0A00]">
       <div className="h-16"></div>

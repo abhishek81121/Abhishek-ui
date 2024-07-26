@@ -10,6 +10,7 @@ import {
   NavbarMenuToggle,
 } from "@nextui-org/navbar";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 export default function DashboardLayout({
@@ -19,7 +20,7 @@ export default function DashboardLayout({
 }) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const menuItems = ["Profile", "Dashboard", "Activity", "Log Out"];
-
+  const router = useRouter();
   return (
     <div className="max-h-screen overflow-hidden">
       <Navbar>
@@ -34,7 +35,17 @@ export default function DashboardLayout({
 
         <NavbarContent justify="end">
           <NavbarItem>
-            <Button as={Link} color="primary" href="#" variant="flat">
+            <Button
+              as={Link}
+              color="primary"
+              href="/login"
+              variant="flat"
+              onClick={() => {
+                if (typeof window != undefined) {
+                  localStorage.setItem("login", "false");
+                }
+              }}
+            >
               Logout
             </Button>
           </NavbarItem>
